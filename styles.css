@@ -1,0 +1,750 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section {
+  background-color: rbg(245, 245, 245);
+  transition: all 300ms ease;
+}
+
+.container {
+  padding: 3.125rem 0;
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0.75rem;
+}
+
+input,
+textarea {
+  width: 100%;
+  background-color: #242424;
+  color: white;
+  outline: none;
+  margin-bottom: 2rem;
+  border: 3px solid white;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  height: 40px;
+  caret-color: white;
+  transition: all 300ms ease;
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+  margin-top: 0.5rem;
+}
+
+input:hover,
+textarea:hover {
+  border-color: #dcdfe6;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #f06449;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.click {
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.click:hover {
+  transform: scale(1.1);
+}
+
+.click:active {
+  transform: scale(0.8);
+}
+
+button {
+  cursor: pointer;
+}
+
+li {
+  list-style-type: none;
+}
+
+.title {
+  font-size: 5rem;
+  margin-bottom: 0.75rem;
+  text-align: left;
+  line-height: 1;
+}
+
+p {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+.orange {
+  color: #f06449;
+}
+
+a {
+  text-decoration: none;
+  transition: opacity 300ms ease;
+}
+
+.link__hover-effect {
+  position: relative;
+}
+
+.link__hover-effect::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  bottom: -3px;
+  right: 0;
+  transition: all 300ms ease;
+}
+
+.link__hover-effect:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.link__hover-effect--black::after {
+  background: #000;
+}
+
+.link__hover-effect--white::after {
+  background: #fff;
+}
+
+nav,
+.scroll,
+.header {
+  opacity: 1;
+  visibility: visible;
+  transition: all 600ms 800ms;
+}
+
+.modal--open nav,
+.modal--open .scroll,
+.modal--open .header {
+  opacity: 0;
+  visibility: hidden;
+  transition: all 400ms;
+}
+
+.dark-mode .title,
+.dark-mode .section__title,
+.dark-mode .section__sub-title,
+.dark-mode .nav__link--anchor,
+.dark-mode .fa-adjust,
+.dark-mode .header__para {
+  color: white;
+}
+
+.dark-mode section {
+  background-color: #242424;
+}
+
+.dark-mode .scroll__icon {
+  border-color: white;
+}
+
+.dark-mode .scroll__icon::after,
+.dark-mode .link__hover-effect--black::after {
+  background-color: white;
+}
+
+.dark-mode .mail__btn {
+  background-color: white;
+  color: #242424;
+}
+
+/*
+  LANDING PAGE
+*/
+
+#landingPage {
+  min-height: 100vh;
+}
+
+.header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* You have to do this transform bcos of the position:absolute */
+  width: 100%;
+  max-width: 1000px;
+  padding: 0 1.875rem;
+}
+
+.header__para {
+  font-size: 1.25rem;
+  line-height: 2;
+  width: 100%;
+  max-width: 450px;
+}
+
+.social__list {
+  margin-top: 1rem;
+  display: flex;
+}
+
+.social__link {
+  background-color: #f06449;
+  color: white;
+  padding: 0.5rem;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1rem;
+  margin-right: 0.75rem;
+  /* Use flex to center the icons as you can't use text-align */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.mail__btn {
+  width: 70px;
+  height: 70px;
+  font-size: 2rem;
+  border-radius: 50%;
+  border: none;
+  background-color: #242424;
+  color: white;
+  position: fixed;
+  bottom: 2rem;
+  right: 2.5rem;
+  z-index: 100;
+  box-shadow: 0 12px 30px 0 rgb(0, 0, 0, 0.28);
+}
+
+.scroll {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(
+    -50%
+  ); /* You have to do this transform bcos of the position:absolute */
+}
+
+.scroll__icon {
+  width: 20px;
+  height: 30px;
+  border: 2px solid #242424;
+  border-radius: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scroll__icon::after {
+  content: "";
+  width: 4px;
+  height: 6px;
+  background-color: #242424;
+  border-radius: 2px;
+  animation: scroll 1000ms infinite alternate-reverse;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(3px);
+  }
+  100% {
+    transform: translateY(-3px);
+  }
+}
+
+/*
+  NAVIGATION
+*/
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  height: 100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.personal-logo {
+  width: 50px;
+  height: 50px;
+  /* filter: invert(1); */
+}
+
+.nav__link--list {
+  display: flex;
+}
+
+.nav__link {
+  margin: 0 1rem;
+}
+
+.nav__link--anchor {
+  color: #242424;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.fa-adjust {
+  font-size: 1.25rem;
+}
+
+/*
+  MODAL
+*/
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 1100px;
+  height: 700px;
+  visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  z-index: -1;
+  transition: visibility 1s, z-index 1s, box-shadow 0.5s ease;
+}
+
+.modal--open .modal {
+  z-index: 60;
+  box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.55);
+  visibility: visible;
+}
+
+.modal__half {
+  position: relative;
+  width: 50%;
+  padding: 2.5rem 4.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: all 500ms ease-in;
+}
+
+.modal--open .modal__about,
+.modal--open .modal__contact {
+  transform: translateX(0%);
+}
+
+.modal__about {
+  background-color: rgb(245, 245, 245);
+  transform: translateX(-110%);
+}
+
+.modal__contact {
+  background-color: #242424;
+  color: white;
+  transform: translateX(110%);
+}
+
+.modal__languages {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.modal__language {
+  position: relative;
+  width: 25%;
+  padding: 1rem; /* This made the images smaller within their boxes */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 300ms ease;
+}
+
+.modal__language:hover {
+  transform: scale(0.9);
+  filter: brightness(70%);
+}
+
+.modal__language:hover .modal__language--name {
+  transform: scale(1);
+}
+
+.modal__language--img {
+  width: 100%;
+}
+
+.modal__language--name {
+  position: absolute;
+  bottom: -10px;
+  transform: scale(0);
+  transition: all 400ms ease;
+}
+
+.modal__title {
+  font-size: 1.625rem;
+}
+
+.modal__sub-title {
+  margin: 1rem 0 1.5rem 0;
+  font-size: 0.875rem;
+}
+
+.modal__para {
+  margin-bottom: 0.75rem;
+  line-height: 1.75;
+}
+
+.modal__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: -1;
+}
+
+.modal__overlay--loading {
+  background-color: #242424;
+  font-size: 5rem;
+}
+
+.modal__overlay--visible {
+  z-index: 1;
+  display: flex;
+}
+
+.fa-spinner {
+  animation: spinner 750ms infinite linear;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.modal__overlay--success {
+  background-color: #4bb543;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  padding: 1.75rem;
+}
+
+#contact__form {
+  display: flex;
+  flex-direction: column;
+  background-color: #242424;
+}
+
+.form__item {
+  margin-bottom: 1.25rem;
+}
+
+.form__submit {
+  background-color: #f06449;
+  border: 2px solid #f06449;
+  color: white;
+  font-weight: 700;
+  width: 100%;
+  max-width: 240px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  transition: all 300ms ease;
+}
+
+.form__submit:hover {
+  background-color: transparent;
+  border-color: white;
+}
+
+.form__submit:active {
+  border-color: #f06449;
+  color: #f06449;
+}
+
+.modal__exit {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #fff;
+  font-size: 2.25rem;
+  z-index: 100;
+}
+
+/*
+  PROJECTS
+*/
+
+.section__title {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 3.75rem;
+}
+
+.project {
+  margin-bottom: 8.5rem;
+}
+
+.project__wrapper {
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 20px 80px 0 rgb(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
+.project__wrapper:hover .project__description {
+  opacity: 1;
+  transform: translateY(-50%);
+}
+
+.project__wrapper:hover .project__img {
+  transform: scale(1.07);
+  filter: blur(5px);
+}
+
+.project__wrapper:hover .project__wrapper--bg {
+  opacity: 0.7;
+  visibility: visible;
+}
+
+.project__wrapper--bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #1c1d25;
+  opacity: 0;
+  transition: all 450ms ease;
+  visibility: hidden;
+}
+
+.project__description {
+  position: absolute;
+  top: 50%;
+  left: 90px;
+  transform: translateY(100%); /* Do not show when not hovering */
+  opacity: 0;
+  transition: opacity 300ms, transform 450ms ease;
+  color: white;
+  max-width: 550px;
+}
+
+.project__img {
+  width: 100%;
+  transition: all 600ms ease;
+}
+
+.project__description--title {
+  font-size: 2.5rem;
+}
+
+.project__description--sub-title {
+  margin-top: 0.5rem;
+}
+
+.project__description--para {
+  margin: 1rem 0;
+}
+
+.project__description--link {
+  color: white;
+  font-size: 1.25rem;
+  margin-right: 1rem;
+}
+
+/*
+  FOOTER
+*/
+
+footer {
+  position: relative;
+  display: flex;
+  background-color: #242424;
+  padding: 6% 0;
+}
+
+footer .container {
+  padding: 0;
+}
+
+.footer__row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer__logo--img {
+  width: 70px;
+}
+
+.footer__social--link,
+.footer__copywright {
+  color: white;
+}
+
+.footer__social--list {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: space-between;
+  margin: 1.75rem 0;
+}
+
+/*
+  SHAPES
+
+  Positioning of shapes
+  Shapes on the first row. Height = 15vh
+  Shapes on the second row. Height = 50vh
+  Shapes on the third row. Height = 80vh
+
+  Shapes on the first column. width = 5vw
+  Shapes on the second column. width = 50vw
+  Shapes on the third column. width = 80vw
+*/
+
+.shape {
+  position: fixed;
+}
+
+.shape--0 {
+  top: 15vh;
+  left: 5vw;
+}
+.shape--1 {
+  top: 15vh;
+  left: 50vw;
+}
+.shape--2 {
+  top: 15vh;
+  left: 80vw;
+}
+.shape--3 {
+  top: 50vh;
+  left: 5vw;
+}
+.shape--4 {
+  top: 50vh;
+  left: 50vw;
+}
+.shape--5 {
+  top: 50vh;
+  left: 80vw;
+}
+.shape--6 {
+  top: 80vh;
+  left: 5vw;
+}
+.shape--7 {
+  top: 80vh;
+  left: 50vw;
+}
+.shape--8 {
+  top: 80vh;
+  left: 80vw;
+}
+
+/* ADDED AFTER TUTORIAL */
+.footer__logo--popper {
+  position: absolute;
+  right: 0;
+  top: 16px;
+  font-weight: 700;
+  opacity: 0;
+  transition: all 300ms ease;
+  color: white;
+}
+
+.footer__anchor {
+  position: relative;
+}
+
+.footer__anchor:hover .footer__logo--popper {
+  transform: translateX(60px);
+  opacity: 1;
+}
+
+/* Small phones, tablets, large smart phones */
+@media (max-width: 768px) {
+  .title {
+    font-size: 80px;
+  }
+  .header__para {
+    font-size: 20px;
+  }
+  .modal {
+    top: 0;
+    left: 0;
+    transform: none;
+    height: auto;
+    width: 100%;
+    flex-direction: column-reverse;
+    border-radius: 0;
+  }
+  .modal__half {
+    width: 100%;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .title {
+    font-size: 52px;
+  }
+  .header__para {
+    font-size: 18px;
+  }
+  .nav__link:first-child {
+    display: none;
+  }
+  .project__description--para {
+    display: none;
+  }
+  .project__description {
+    left: 0;
+    padding: 0;
+    width: 100%;
+    text-align: center;
+  }
+  .project__description--sub-title {
+    margin-bottom: 8px;
+  }
+  .modal__half {
+    padding: 40px;
+  }
+}
